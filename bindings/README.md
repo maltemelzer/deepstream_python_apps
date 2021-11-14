@@ -12,7 +12,7 @@ The following dependencies needs to be met:
 Ubuntu - 18.04 :
 ```
 apt install -y git python-dev python3 python3-pip python3.6-dev python3.8-dev cmake g++ build-essential \
-    libglib2.0-dev libglib2.0-dev-bin python-gi-dev libtool m4 autoconf automake
+    libglib2.0-dev libglib2.0-dev-bin python-gi-dev libtool m4 autoconf automake libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
 ```
 
 Ubuntu - 20.04 [use python-3.8, python-3.6 will not work] :
@@ -28,6 +28,9 @@ git submodule update --init
 ```
 ### 2.3 Installing Gst-python
 ```
+GST_LIBS="-lgstreamer-1.0 -lgobject-2.0 -lglib-2.0"
+GST_CFLAGS="-pthread -I/usr/include/gstreamer-1.0 -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include"
+
 cd 3rdparty/gst-python/
 ./autogen.sh
 make
@@ -40,7 +43,7 @@ Go to https://developer.nvidia.com/deepstream-sdk, download and install Deepstre
 
 ### 3.1 Quick build (x86-ubuntu-18.04 | python 3.6 | Deepstream 6.0)
 ```
-cd deepstream_python_apps/bindings
+cd ../../bindings
 mkdir build
 cd build
 cmake ..
@@ -50,7 +53,7 @@ make
 ### 3.1.1 Quick build (x86-ubuntu-20.04 | python 3.8 | Deepstream 6.0)
 
 ```
-cd deepstream_python_apps/bindings
+cd cd ../../bindings/bindings
 mkdir build
 cd build
 cmake ..  -DPYTHON_MAJOR_VERSION=3 -DPYTHON_MINOR_VERSION=8
